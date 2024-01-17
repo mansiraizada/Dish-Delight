@@ -1,10 +1,9 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import Context from "./context";
 
 const inputValid = (val) => val.trim() !== "";
-
 const postalCodeValid = (val) => val.trim().length === 6;
 
 const CheckoutForm = (props) => {
@@ -19,6 +18,8 @@ const CheckoutForm = (props) => {
   const enteredAddressRef = useRef();
   const enteredPostalCodeRef = useRef();
   const enteredCityRef = useRef();
+
+  const cartContext = useContext(Context);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -50,13 +51,15 @@ const CheckoutForm = (props) => {
       return;
     }
 
-    // If the form is valid, show a success toast
+    setTimeout(() => {
     toast.success("Your order has been placed!", {
       position: "top-center",
-      autoClose: 3000, // Close the toast after 3000 milliseconds (3 seconds)
+      autoClose: 3000,
     });
+  }, 100);
 
-    props.clearCart();
+    cartContext.clearCart();
+    props.onClick();
   };
 
   return (
@@ -120,21 +123,21 @@ const CheckoutForm = (props) => {
         {!formValid.city && <p className="text-red-500">Enter correct value.</p>}
       </div>
       <div className="flex justify-between">
-        <button
-          type="button"
-          onClick={props.onClick}
-          className="px-4 py-2 bg-gray-400 text-white rounded-md hover:bg-gray-500 focus:outline-none focus:ring focus:border-gray-300"
-        >
-          Cancel
-        </button>
-        <button
-          type="submit"
-          onClick={submitHandler}  
-          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
-        >
-          Confirm
-        </button>
-      </div>
+          <button
+            type="button"
+            onClick={props.onClick}
+            className="px-4 py-2 bg-gray-400 text-white rounded-md hover:bg-gray-500 focus:outline-none focus:ring focus:border-gray-300"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            onClick={submitHandler}
+            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
+          >
+            Confirm
+          </button>
+        </div>
       </form>
       </>
   );

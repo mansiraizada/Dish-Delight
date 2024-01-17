@@ -28,7 +28,7 @@ const MealItem = (props) => {
     >
       <h3 className="text-lg font-bold">{props.name}</h3>
       <div className="mb-2 text-gray-600">{props.description}</div>
-      <div className="text-xl font-bold mb-2">${props.price.toFixed(2)}</div>
+      <div className="text-xl font-bold mb-2">{price}</div>
       <MealItemForm onAddToCart={addtoCartHandler} />
     </div>
   );

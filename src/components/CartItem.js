@@ -8,7 +8,7 @@ const CartItem = (props) => {
       <div>
         <h2 className="text-lg font-bold">{props.name}</h2>
         <div className="text-gray-600">
-          <span className="font-bold">${props.price}</span>
+          <span className="font-bold">{price}</span>
           <span className="ml-2">x {props.amount}</span>
         </div>
       </div>

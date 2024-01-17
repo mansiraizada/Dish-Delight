@@ -1,8 +1,6 @@
 // Header.js
 import React from "react";
 import HeaderCartButton from "./HeaderCartButton";
-import foodimg from "./food.jpg";
-
 const Header = (props) => {
   return (
     <header className="w-full h-[40vh] bg-cover bg-center bg-gradient-to-r from-green-400 to-blue-500 p-4 ">

@@ -28,13 +28,6 @@ const Cart = (props) => {
     props.onHideCart(); // Call onHideCart to close the modal
   };
 
-  const clearCart = () => {
-    ctx.items.forEach((item) => {
-    ctx.removeItem(item.id);
-    });
-    closeCart();
-  };
-
   const cartItems = ctx.items.map((el) => (
     <CartItem
       key={el.id}
@@ -55,7 +48,8 @@ const Cart = (props) => {
         <span className="text-lg font-bold mb-2 block">Total Amount</span>
         <span className="text-xl font-bold">{totalAmount}</span>
       </div>
-      {isOrdering && <CheckoutForm onClick={closeCart} clearCart={clearCart}/>}
+      {/* {isOrdering && <CheckoutForm onClick={closeCart} clearCart={clearCart}/>} */}
+      {isOrdering && <CheckoutForm onClick={closeCart}/>}
       {!isOrdering && (
         <div>
           <button
